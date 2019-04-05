@@ -1,0 +1,31 @@
+* {
+  margin:0px;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+a {
+  text-decoration:none;
+  opacity:0.9;
+}
+
+a:hover {
+  opacity:1;
+  transition: 0.5s;
+}
+
+*::selection {
+  background: #00b779;
+}
+
+*::-moz-selection {
+  background: #00b779;
+}
+
+@media screen and (max-width : 500px) {
+  a {
+    opacity:1; 
+  }
+}

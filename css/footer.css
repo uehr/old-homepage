@@ -1,0 +1,13 @@
+#copyright {
+  text-align:center;
+  font-size:100%;
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+
+@media screen and (max-width : 500px) {
+  #copyright {
+    font-size: 50%;
+  }
+}
