@@ -1,0 +1,46 @@
+body {
+    background-color: var(--body-color1);
+}
+
+#service {
+    background-color: var(--body-color2);
+    padding-left: 8%;
+    padding-right: 8%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+#imageSubmit {
+  border-style: none;
+  background-color: red;
+}
+
+#description {
+  margin-bottom: 5%;
+}
+
+#description-text {
+  margin-bottom: 3%;
+}
+
+label {
+  color: var(--font-color1);
+  text-align: center;
+  font-size: 150%;
+  background-color: var(--theme-color);
+  border-radius: 10px;
+  padding: 3%;
+  display: block;
+  width: 60%;
+  margin:auto;
+}
+
+
+label:hover {
+  cursor: pointer;
+  background-color: var(--body-color1);
+  transition: 0.5s;
+}
+
+#file-upload {
+}

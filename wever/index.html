@@ -27,31 +27,63 @@
     <link href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
 
-    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/social.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/wever.css">
+
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-    <script>
-        const base = "https:\/\/www.uehr.co/wever"
-        const theme_color = "#00e091";
-        const body_color1 = "#1E1F26";
-        const body_color2 = "#EEEEEE";
-        const body_color3 = "#f7f7f7";
-        const body_color4 = "#2c2c33";
-        const font_color1 = "#d6d6d6";
-        const font_color2 = "black"
-        const footer_color = "#1E1F26"
-        const header_color = "#1E1F26"
-        const font_name = "Sawarabi Mincho"
-        const font_url = "https:\/\/fonts.googleapis.com\/earlyaccess\/sawarabimincho.css"
-        const list_mark = "img/list_mark.png"
-    </script>
-    <script src="js/common.js"></script>
+    <script src="js/wever.js"></script>
 </head>
 
 <body>
-    <form action="http://54.65.130.78/personMosaic" method="post" enctype="multipart/form-data">
-        <input type="file" name="uploadFile" />
-        <input type="submit" value="submit" />
-    </form>
+    <div id="social">
+        <a href="https://www.uehr.co" class="share" title="Other products"><img class="home button" src="img/Uehr37.png"></img></a>
+
+        <a href="https://twitter.com/intent/tweet?text=https%3a%2f%2fwww.uehr.co%2fwever" title="Twitterでシェア" class="share"
+            target="_blank" class="twitter-share-button" data-lang="ja"> <img class="button" src="../img/Twitter.png"></a>
+        <a href="http://b.hatena.ne.jp/entry/https://www.uehr.co/wever" target="_blank" class="share"
+            data-hatena-bookmark-layout="touch" title="このエントリーをはてなブックマークに追加">
+            <img class="hatena button" src="../img/Hatebu.png">
+        </a>
+
+    </div>
+
+    <div id="header" class="back1">
+        <h1 id="title" class="font1"><span class="theme-color">w</span>ever</h1>
+    </div>
+
+    <div id="service">
+        <div id="description">
+            <h1 id="description-text" class="font2">写真に写り込んだ人を自動検知しモザイク加工</h1>
+            <img id="before-after-example" src="img/before-after-example.png">
+        </div>
+
+        <div id="file-upload">
+            <!-- <form action="http://54.65.130.78/personMosaic" method="post" enctype="multipart/form-data"> -->
+            <form action="http://localhost/personMosaic" method="post" enctype="multipart/form-data">
+
+                <label for="file-photo">
+                    ＋画像を選択
+                    <input type="file" id="file-photo" style="display:none;">
+                </label>
+
+                <!-- <input id="imageSubmit" type="submit" value="submit" /> -->
+            </form>
+        </div>
+    </div>
+
+    <footer class="back1">
+        <div id="copyright">
+            <p class="font1">This site is open source. <a href="https://github.com/uehr/uehr.github.io/tree/background"
+                    target="_blank">Github</a>.</p>
+            <p class="font1">Copyright(c) 2017, Yudai Uehara (<a class="theme-color" href="https://twitter.com/uehr37"
+                    target="_blank">@uehr37</a>)<br>All
+                Rights Reserved.</p>
+        </div>
+    </footer>
+
 </body>
 
 </html>
