@@ -16,6 +16,7 @@ $(function () {
 
   const uploadImagePreview = src => {
     $("#upload-image-preview").attr("src", src)
+    $("#upload-image-preview").hide().fadeIn(2000)
     $("#file-upload").css("display", "none")
   }
 
