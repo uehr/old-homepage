@@ -17,10 +17,15 @@ body {
 
 #description {
   margin-bottom: 5%;
+  font-size: 130%;
+}
+
+#before-after-example {
+  margin-bottom: 2%;
 }
 
 #description-text {
-  margin-bottom: 3%;
+  text-align: center;
 }
 
 label {
