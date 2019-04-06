@@ -2,48 +2,68 @@ $(function () {
   setInterval(() => {
     const parentWidth = parseInt($("#before-after-example").parent().css("width"))
     $("#before-after-example").css("width", parentWidth)
+    $("#upload-image-preview").css("width", parentWidth)
   }, 100)
 
-  var droppable = $("#file-upload");
-
-  // File API が使用できない場合は諦めます.
-  if (!window.FileReader) {
-    alert("File API がサポートされていません。");
-    return false;
-  }
-
-  // イベントをキャンセルするハンドラです.
-  var cancelEvent = function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-    return false;
-  }
-
-  // dragenter, dragover イベントのデフォルト処理をキャンセルします.
-  droppable.bind("dragenter", cancelEvent);
-  droppable.bind("dragover", cancelEvent);
-
-  // ドロップ時のイベントハンドラを設定します.
-  var handleDroppedFile = function (event) {
-    // ファイルは複数ドロップされる可能性がありますが, ここでは 1 つ目のファイルを扱います.
-    var file = event.originalEvent.dataTransfer.files[0];
-
-    // ファイルの内容は FileReader で読み込みます.
-    var fileReader = new FileReader();
-
-    fileReader.onload = function (event) {
-      // event.target.result に読み込んだファイルの内容が入っています.
-      // ドラッグ＆ドロップでファイルアップロードする場合は result の内容を Ajax でサーバに送信しましょう!
-      // $("#droppable").text("[" + file.name + "]" + event.target.result);
-      alert(file.name)
+  const isValidFile = file => {
+    if (file.type.indexOf("image") < 0) {
+      alert("画像ファイルを指定してください。")
+      return false
     }
-    fileReader.readAsText(file);
 
-    // デフォルトの処理をキャンセルします.
-    cancelEvent(event);
-    return false;
+    return true
+  }
+
+  const uploadImagePreview = src => {
+    $("#upload-image-preview").attr("src", src)
+    $("#file-upload").css("display", "none")
+  }
+
+  $("input[type=file]").change(function () {
+    const file = this.files[0]
+    const fr = new FileReader()
+
+    if (file == null || !isValidFile(file)) return false
+
+    fr.onload = (function (file) {
+      return function (e) { uploadImagePreview(e.target.result) }
+    })(file)
+
+    fr.readAsDataURL(file)
+  })
+
+  var droppable = $("#file-upload")
+
+  if (!window.FileReader) {
+    alert("File API がサポートされていません。")
+    return false
+  }
+
+  var cancelEvent = function (event) {
+    event.preventDefault()
+    event.stopPropagation()
+    return false
+  }
+
+  droppable.bind("dragenter", cancelEvent)
+  droppable.bind("dragover", cancelEvent)
+
+  var handleDroppedFile = function (event) {
+    var file = event.originalEvent.dataTransfer.files[0]
+    var fr = new FileReader()
+
+    if (!isValidFile(file)) return false
+
+    fr.onload = (function (file) {
+      return function (e) { uploadImagePreview(e.target.result) }
+    })(file)
+
+    fr.readAsDataURL(file)
+
+    cancelEvent(event)
+    return false
   }
 
   // ドロップ時のイベントハンドラを設定します.
-  droppable.bind("drop", handleDroppedFile);
+  droppable.bind("drop", handleDroppedFile)
 })
