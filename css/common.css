@@ -1,3 +1,50 @@
+:root {
+  --theme-color: #00e091;
+  --body-color1: #1E1F26;
+  --body-color2: #EEEEEE;
+  --body-color3: #f7f7f7;
+  --body-color4: #2c2c33;
+  --font-color1: #d6d6d6;
+  --font-color2: black;
+  --footer-color: #1E1F26;
+  --header-color: #1E1F26;
+  --list-mark: url("../img/list_mark.png")
+}
+
+
+
+.theme-color {
+  color: var(--theme-color);
+}
+
+.back1 {
+  background-color: var(--body-color1)
+}
+
+.back2 {
+  background-color: var(--body-color2)
+}
+
+.back3 {
+  background-color: var(--body-color3)
+}
+
+.back4 {
+  background-color: var(--body-color4)
+}
+
+.font1 {
+  color: var(--font-color1)
+}
+
+.font2 {
+  color: var(--font-color2)
+}
+
+ul {
+  list-style-image: var(--list-mark);
+}
+
 * {
   margin:0px;
 }
@@ -9,6 +56,7 @@ html {
 a {
   text-decoration:none;
   opacity:0.9;
+  color: var(--theme-color)
 }
 
 a:hover {
@@ -17,11 +65,11 @@ a:hover {
 }
 
 *::selection {
-  background: #00b779;
+  background: var(--theme-color);
 }
 
 *::-moz-selection {
-  background: #00b779;
+  background: var(--theme-color);
 }
 
 @media screen and (max-width : 500px) {

@@ -12,6 +12,7 @@
 }
 
 .headline-wrap {
+  background-color: var(--body-color3);
   border-radius:0px;
   padding-left:10%;
   padding-right:10%;
@@ -40,6 +41,7 @@
 }
 
 .product-wrap {
+  background-color: var(--body-color4);
   border-radius:0px;
   -webkit-box-shadow: 0 10px 6px -6px black;
   -moz-box-shadow: 0 10px 6px -6px black;
@@ -129,9 +131,10 @@
 }
 
 .product-name {
+  color: var(--font-color1);
   margin-top:15px;
   margin-bottom:15px;
-  border-left:solid 10px;
+  border-left:solid 10px var(--theme-color);
   padding-left: 10px;
   font-size:100%;
 }
@@ -147,6 +150,7 @@
 }
 
 .comment {
+  color: var(--font-color1);
   border:solid 3px;
   border-radius:10px;
   padding:10px;
@@ -213,7 +217,7 @@
   .product-name {
     margin-top:0px;
     margin-bottom:0px;
-    border-left:solid 10px;
+    border-left: solid 10px;
     padding-left: 10px;
     font-size:100%;
   }
