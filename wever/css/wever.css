@@ -26,15 +26,14 @@ body {
 label {
   color: var(--font-color1);
   text-align: center;
-  font-size: 150%;
+  font-size: 200%;
   background-color: var(--theme-color);
   border-radius: 10px;
-  padding: 3%;
+  padding: 2%;
   display: block;
-  width: 60%;
+  width: 40%;
   margin:auto;
-}
-
+} 
 
 label:hover {
   cursor: pointer;
@@ -43,4 +42,22 @@ label:hover {
 }
 
 #file-upload {
+  border: 2px dashed var(--theme-color);
+  border-radius: 20px;
+  height: 30%;
+  padding: 10%;
+  padding-bottom: 6%;
+  background-color: var(--body-color3);
+  text-align: center;
+}
+
+#drag-description {
+  color: var(--font-color1);
+  font-size: 400%;
+}
+
+#accept-file-type {
+  color: var(--font-color1);
+  font-size: 200%;
+  margin-bottom: 2%;
 }
