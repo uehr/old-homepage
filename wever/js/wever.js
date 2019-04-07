@@ -2,7 +2,7 @@ $(function () {
   setInterval(() => {
     const parentWidth = parseInt($("#before-after-example").parent().css("width"))
     $("#before-after-example").css("width", parentWidth)
-    $("#upload-image-preview").css("width", parentWidth)
+    $("#upload-image-preview").css("width", parentWidth * 0.7)
   }, 100)
 
   const isValidFile = file => {
