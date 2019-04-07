@@ -17,7 +17,7 @@
     <meta property="og:url" content="https://www.uehr.co/wever" />
     <meta property="og:image" content="../img/ogp_img.png" />
     <meta property="og:site_name" content="wever" />
-    <meta property="og:description" content="写真に写り込んだ人をAIが検知しモザイク加工" />
+    <meta property="og:description" content="写真に写り込んだ人をAIが検知しモザイク加工 - wever" />
 
 
     <meta name="twitter:card" content="summary" />
@@ -62,27 +62,34 @@
             <h2 id="description-text" class="font2">- 写真に写り込んだ人をAIが検知しモザイク加工 -</h2>
         </div>
 
-        <div id="file-upload">
+        <div id="file-select">
             <h1 id="drag-description">ファイル読み込みエリア</h1>
             <h2 id="accept-file-type">JPEG形式のみ対応</h2>
 
             <!-- <form action="http://54.65.130.78/personMosaic" method="post" enctype="multipart/form-data"> -->
             <form action="http://localhost/personMosaic" method="post" enctype="multipart/form-data">
 
-                <label for="file-select">
-                    ＋画像を選択
+                <label for="file-select-input">
+                    <div id="file-select-button" class="btn">＋画像を選択</div>
                     <!-- <input type="file" id="file-select" style="display:none;" accept="image/jpeg, image/jpg"> -->
-                    <input type="file" id="file-select" style="display:none;">
+                    <input type="file" id="file-select-input" style="display:none;">
                 </label>
 
                 <!-- <input id="imageSubmit" type="submit" value="submit" /> -->
             </form>
         </div>
 
-        <img id="upload-image-preview">
+        <div id="file-upload">
+            <div id="upload-ui">
+                <div id="back-button" class="btn upload-ui-button">戻る</div>
+                <div id="upload-button" class="btn upload-ui-button">開始</div>
+            </div>
+            <img id="image-preview">
+            <img id="upload-image">
+        </div>
     </div>
 
-    <footer class="back1">
+    <footer class=" back1">
         <div id="copyright">
             <p class="font1">This site is open source. <a href="https://github.com/uehr/uehr.github.io/tree/background"
                     target="_blank">Github</a>.</p>

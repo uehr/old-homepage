@@ -28,25 +28,12 @@ body {
   text-align: center;
 }
 
-label {
-  color: var(--font-color1);
-  text-align: center;
-  font-size: 200%;
-  background-color: var(--theme-color);
-  border-radius: 10px;
-  padding: 2%;
-  display: block;
+#file-select-button {
   width: 40%;
-  margin:auto;
-} 
-
-label:hover {
-  cursor: pointer;
-  background-color: var(--body-color1);
-  transition: 0.5s;
+  font-size: 200%;
 }
 
-#file-upload {
+#file-select {
   border: 2px dashed var(--theme-color);
   border-radius: 20px;
   height: 30%;
@@ -67,5 +54,47 @@ label:hover {
   margin-bottom: 2%;
 }
 
-#upload-image-preview {
+#image-preview {
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: bottom;
+  border: solid 1px var(--body-color1);
+}
+
+#upload-image {
+  display: none;
+}
+
+
+#file-upload {
+  display: none;
+} 
+
+#upload-ui {
+  width: 25%;
+  display: inline-block;
+}
+
+.upload-ui-button {
+  font-size: 200%;
+}
+
+#upload-button {
+  margin-top: 2%;
+}
+
+.btn {
+  color: var(--font-color1);
+  text-align: center;
+  background-color: var(--theme-color);
+  border-radius: 10px;
+  padding: 2%;
+  display: block;
+  margin:auto;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: var(--body-color1);
+  transition: 0.5s;
 }

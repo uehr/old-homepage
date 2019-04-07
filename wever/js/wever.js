@@ -2,8 +2,28 @@ $(function () {
   setInterval(() => {
     const parentWidth = parseInt($("#before-after-example").parent().css("width"))
     $("#before-after-example").css("width", parentWidth)
-    $("#upload-image-preview").css("width", parentWidth * 0.7)
+    $("#image-preview").css("width", parentWidth * 0.7)
+
   }, 100)
+
+  const personMosaicURL = "http://localhost/personMosaic"
+
+  const imageToBase64 = (imgTagId, mimeType) => {
+    const img = document.getElementById(imgTagId);
+
+    var canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0, img.width, img.height);
+
+    alert(img.height + " " + img.width)
+
+    const base64 = canvas.toDataURL(mimeType).split(",")[1]
+
+    return base64
+  }
 
   const isValidFile = file => {
     if (file.type.indexOf("image") < 0) {
@@ -14,11 +34,54 @@ $(function () {
     return true
   }
 
-  const uploadImagePreview = src => {
-    $("#upload-image-preview").attr("src", src)
-    $("#upload-image-preview").hide().fadeIn(2000)
-    $("#file-upload").css("display", "none")
+  const showFileUploader = () => {
+    $("#file-upload").hide().fadeIn(2000)
+    $("#file-select").hide()
   }
+
+  const uploadImagePreview = src => {
+    $("#file-select-input").attr("value", "")
+    $("#image-preview").attr("src", src)
+    $("#upload-image").attr("src", src)
+    showFileUploader()
+  }
+
+  const showFileSelecter = () => {
+    $("#file-upload").hide()
+    $("#file-select").hide().fadeIn(2000)
+  }
+
+  const personMosaic = base64Img => {
+    const json = { "base64Img": base64Img }
+    const body = JSON.stringify(json)
+    const method = "POST";
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    return fetch(personMosaicURL, { method, headers, body })
+  }
+
+  $("#back-button").click(() => {
+    showFileSelecter()
+  })
+
+  $("#upload-button").click(() => {
+    const base64Img = imageToBase64("upload-image", "image/jpg")
+
+    personMosaic(base64Img).then(res => {
+      if (res.status !== 200) {
+        alert("処理に失敗しました")
+      } else {
+        res.json().then(processed => {
+          $("#upload-image").attr("src", processed.base64Img)
+        })
+      }
+    }).catch(error => {
+      alert("処理に失敗しました")
+    })
+  })
 
   $("input[type=file]").change(function () {
     const file = this.files[0]
@@ -65,6 +128,5 @@ $(function () {
     return false
   }
 
-  // ドロップ時のイベントハンドラを設定します.
   droppable.bind("drop", handleDroppedFile)
 })
