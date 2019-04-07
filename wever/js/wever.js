@@ -3,7 +3,6 @@ $(function () {
     const parentWidth = parseInt($("#before-after-example").parent().css("width"))
     $("#before-after-example").css("width", parentWidth)
     $("#image-preview").css("width", parentWidth * 0.7)
-
   }, 100)
 
   const personMosaicURL = "http://localhost/personMosaic"
@@ -17,8 +16,6 @@ $(function () {
 
     var ctx = canvas.getContext('2d');
     ctx.drawImage(img, 0, 0, img.width, img.height);
-
-    alert(img.height + " " + img.width)
 
     const base64 = canvas.toDataURL(mimeType).split(",")[1]
 
@@ -75,7 +72,7 @@ $(function () {
         alert("処理に失敗しました")
       } else {
         res.json().then(processed => {
-          $("#upload-image").attr("src", processed.base64Img)
+          $("#image-preview").attr("src", "data:image/jpg;base64," + processed.base64Img)
         })
       }
     }).catch(error => {
