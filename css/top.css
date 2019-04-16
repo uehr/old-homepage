@@ -216,8 +216,8 @@
 
   .product-name {
     margin-top:0px;
+    border-left: solid 5px var(--theme-color);
     margin-bottom:0px;
-    border-left: solid 10px;
     padding-left: 10px;
     font-size:100%;
   }
