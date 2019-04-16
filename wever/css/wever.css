@@ -1,7 +1,3 @@
-body {
-    background-color: var(--body-color1);
-}
-
 #service {
     background-color: var(--body-color2);
     padding-left: 8%;
@@ -10,9 +6,14 @@ body {
     padding-bottom: 3%;
 }
 
-#imageSubmit {
-  border-style: none;
-  background-color: red;
+#title {
+  font-size: 5vw;
+}
+
+.upload-ui-button {
+  display: inline-block;
+  opacity: 0.8;
+  width: 7vw;
 }
 
 #description {
@@ -22,15 +23,17 @@ body {
 
 #before-after-example {
   margin-bottom: 2%;
+  width: 85vw;
 }
 
 #description-text {
   text-align: center;
+  font-size: 2.4vw;
 }
 
 #file-select-button {
   width: 40%;
-  font-size: 200%;
+  font-size: 3vw;
 }
 
 #file-select {
@@ -45,17 +48,18 @@ body {
 
 #drag-description {
   color: var(--font-color1);
-  font-size: 400%;
+  font-size: 5vw;
 }
 
 #accept-file-type {
   color: var(--font-color1);
-  font-size: 200%;
+  font-size: 2vw;
   margin-bottom: 2%;
 }
 
 #image-preview {
   display: inline-block;
+  transition: 3s;
   margin-bottom: 0;
   vertical-align: bottom;
   border: solid 1px var(--body-color1);
@@ -65,23 +69,41 @@ body {
   display: none;
 }
 
+#processed-image {
+  display: none;
+}
 
 #file-upload {
   display: none;
-} 
+  position: relative;
+  background-color: var(--body-color1);
+}
 
 #upload-ui {
-  width: 25%;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  padding: 1vw;
+}
+
+.upload-ui-part {
+  font-size: 200%;
   display: inline-block;
 }
 
-.upload-ui-button {
+.upload-ui-part.btn {
   font-size: 200%;
 }
 
-#upload-button {
-  margin-top: 2%;
+#image-size {
+  transition: 0.5s;
+  display: inline-block;
+  color: var(--theme-color);
+  margin: auto;
+  font-size: 4vw;
 }
+
 
 .btn {
   color: var(--font-color1);
@@ -89,7 +111,6 @@ body {
   background-color: var(--theme-color);
   border-radius: 10px;
   padding: 2%;
-  display: block;
   margin:auto;
 }
 
@@ -97,4 +118,36 @@ body {
   cursor: pointer;
   background-color: var(--body-color1);
   transition: 0.5s;
+}
+
+#processing-view{
+    color: var(--theme-color);
+    text-align: center;
+    font-size: 5vw;
+    position: absolute;
+	  -webkit-animation:blink 0.7s ease-in-out infinite alternate;
+    -moz-animation:blink 0.7s ease-in-out infinite alternate;
+    animation:blink 0.7s ease-in-out infinite alternate;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+@-webkit-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-moz-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
 }
