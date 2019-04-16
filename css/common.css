@@ -11,7 +11,9 @@
   --list-mark: url("../img/list_mark.png")
 }
 
-
+body {
+    background-color: var(--body-color1);
+}
 
 .theme-color {
   color: var(--theme-color);
