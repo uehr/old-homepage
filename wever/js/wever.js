@@ -2,12 +2,14 @@ $(function () {
   setInterval(() => {
     const parentWidth = parseInt($("#before-after-example").parent().css("width"))
     const parentHeight = parseInt($("#before-after-example").parent().css("height"))
+
     $("#before-after-example").css("width", parentWidth)
     $("#image-preview").css("width", parentWidth)
+    $("#upload-ui").css("width", parentWidth)
   }, 100)
 
-  $("#download-link").css("display", "none")
   $("#image-process-ui").hide()
+  $("#processing-view").hide()
 
   const personMosaicURL = "http://localhost/personMosaic"
   var selectedFileName = ""
@@ -29,7 +31,10 @@ $(function () {
 
   const isValidFile = file => {
     if (file.type.indexOf("image") < 0) {
-      alert("画像ファイルを指定してください。")
+      alert("画像ファイルを選択してください")
+      return false
+    } else if (!file.name.match(".jpg|.jpeg|.png")) {
+      alert("JPEG/PNG形式のファイルを選択してください")
       return false
     }
 
@@ -41,17 +46,17 @@ $(function () {
     $("#file-select").hide()
   }
 
-  const uploadImagePreview = src => {
+  const showUploadImagePreview = src => {
     $("#file-select-input").attr("value", "")
     $("#image-preview").attr("src", src)
     $("#upload-image").attr("src", src)
+    $("#download-button").hide()
+    $("#upload-button").hide().fadeIn(500)
+
     showFileUploader()
-    $("html,body").animate({ scrollTop: $(document).height() }, 1000);
-    $("#download-link").css("display", "none")
-    $("#image-process-ui").show()
 
     setTimeout(() => {
-      $("#image-size").text($("#upload-image").height() + " × " + $("#upload-image").width())
+      $("html,body").animate({ scrollTop: $("#upload-ui").offset().top }, 1000);
     }, 100)
   }
 
@@ -59,6 +64,16 @@ $(function () {
     $("#file-upload").hide()
     $("#image-process-ui").hide()
     $("#file-select").hide().fadeIn(1000)
+  }
+
+  const startProcessingView = () => {
+    $("#processing-view").show()
+    $("#image-preview").css("opacity", 0.3)
+  }
+
+  const finishProcessingView = () => {
+    $("#processing-view").hide()
+    $("#image-preview").css("opacity", 1)
   }
 
   const personMosaic = base64Img => {
@@ -93,30 +108,52 @@ $(function () {
     });
   }
 
+  const fileDownload = (src, name) => {
+    const a = document.createElement('a');
+    a.href = src;
+    a.download = name;
+
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+  $("#download-button").click(() => {
+    const src = $("#processed-image").attr("src")
+    const blob = dataURIToBlob(src);
+    const objUrl = URL.createObjectURL(blob);
+    const downloadFileName = selectedFileName.replace(".jpg", "-mosaic.jpg").replace(".jpeg", "-mosaic.jpeg").replace(".png", "-mosaic.png")
+
+    fileDownload(objUrl, downloadFileName)
+  })
 
   $("#upload-button").click(() => {
+    startProcessingView()
+
     const base64Img = imageToBase64("upload-image", "image/jpg")
 
     personMosaic(base64Img).then(res => {
       if (res.status !== 200) {
         alert("処理に失敗しました")
+        finishProcessingView()
       } else {
         res.json().then(processed => {
-          const downloadFileName = selectedFileName.replace(".jpg", "-mosaic.jpg").replace(".jpeg", "-mosaic.jpeg")
           const src = "data:image/jpg;base64," + processed.base64Img
-          const blob = dataURIToBlob(src);
-          const objUrl = URL.createObjectURL(blob);
 
           $("#image-preview").attr("src", src)
           $("#processed-image").attr("src", src)
-          $("#download-link").attr("href", objUrl)
+          $("#upload-button").hide()
+          $("#download-button").hide().fadeIn(500)
 
-          $("#download-link").attr("download", downloadFileName)
-          $("#download-link").css("display", "inline-block")
+          setTimeout(() => {
+            finishProcessingView()
+          }, 100)
         })
       }
     }).catch(error => {
       alert("処理に失敗しました")
+      finishProcessingView()
     })
   })
 
@@ -128,36 +165,32 @@ $(function () {
     if (file == null || !isValidFile(file)) return false
 
     fr.onload = (function (file) {
-      return function (e) { uploadImagePreview(e.target.result) }
+      return function (e) { showUploadImagePreview(e.target.result) }
     })(file)
 
     fr.readAsDataURL(file)
   })
 
-  var droppable = $("#file-upload")
 
   if (!window.FileReader) {
     alert("File API がサポートされていません。")
     return false
   }
 
-  var cancelEvent = function (event) {
+  const cancelEvent = event => {
     event.preventDefault()
     event.stopPropagation()
     return false
   }
 
-  droppable.bind("dragenter", cancelEvent)
-  droppable.bind("dragover", cancelEvent)
-
-  var handleDroppedFile = function (event) {
+  const handleDroppedFile = event => {
     var file = event.originalEvent.dataTransfer.files[0]
     var fr = new FileReader()
 
     if (!isValidFile(file)) return false
 
     fr.onload = (function (file) {
-      return function (e) { uploadImagePreview(e.target.result) }
+      return function (e) { showUploadImagePreview(e.target.result) }
     })(file)
 
     fr.readAsDataURL(file)
@@ -166,5 +199,8 @@ $(function () {
     return false
   }
 
+  const droppable = $("#file-select")
+  droppable.bind("dragenter", cancelEvent)
+  droppable.bind("dragover", cancelEvent)
   droppable.bind("drop", handleDroppedFile)
 })
