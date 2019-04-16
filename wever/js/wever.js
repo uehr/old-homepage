@@ -11,7 +11,7 @@ $(function () {
   $("#image-process-ui").hide()
   $("#processing-view").hide()
 
-  const personMosaicURL = "http://54.65.130.78/personMosaic"
+  const personMosaicURL = "https://wever.uehr.co/personMosaic"
   var selectedFileName = ""
 
   const imageToBase64 = (imgTagId, mimeType) => {
