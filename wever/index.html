@@ -74,15 +74,18 @@
         </div>
 
         <div id="file-upload">
-            <img id="image-preview">
+            <div id="image-preview-wrap">
+                <img id="upload-image-preview" class="image-preview">
+                <img id="processed-image-preview" class="image-preview">
+            </div>
+
+            <h1 id="processing-view">Processing...</h1>
 
             <div id="upload-ui">
                 <img id="back-button" title="戻る" class="btn upload-ui-button" src="img/back.png"></img>
                 <img id="upload-button" title="モザイク加工" class="btn upload-ui-button" src="img/effect.png"></img>
                 <img id="download-button" title="ダウンロード" class="btn upload-ui-button" src="img/download.png"></img>
             </div>
-
-            <h1 id="processing-view">Processing...</h1>
         </div>
 
         <img id="upload-image">
