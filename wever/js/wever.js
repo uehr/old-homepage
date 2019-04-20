@@ -12,6 +12,7 @@ $(function () {
   $("#image-process-ui").hide()
   $("#processing-view").hide()
   $("#processed-image-preview").hide()
+  $("#detected-count").hide()
 
   const personMosaicURL = "https://wever.uehr.co/personMosaic"
   // const personMosaicURL = "http://localhost/personMosaic"
@@ -69,18 +70,27 @@ $(function () {
     $("#file-select").hide().fadeIn(1000)
     $("#processed-image-preview").attr("src", "")
     $("#upload-image-preview").attr("src", "")
+    $("#detected-count").hide()
+  }
+
+  const showDetectedCount = (count, viewTime) => {
+    $("#detected-count").hide().text(count + "人検知しました！").fadeIn(500)
+
+    setInterval(() => {
+      $("#detected-count").fadeOut(1000)
+    }, viewTime)
   }
 
   const startProcessingView = () => {
     $("#processing-view").show()
     $("#upload-image-preview").css("opacity", 0.3)
-    $(".image-preview").css("transition", "3s")
+    $("#upload-image-preview").css("transition", "3s")
   }
 
-  const finishProcessingView = () => {
+  const finishProcessingView = finishText => {
     $("#processing-view").hide()
     $("#upload-image-preview").css("opacity", 1)
-    $(".image-preview").css("transition", "0s")
+    $("#upload-image-preview").css("transition", "0s")
   }
 
   const personMosaic = base64Img => {
@@ -150,15 +160,19 @@ $(function () {
         finishProcessingView()
       } else {
         res.json().then(processed => {
-          const src = "data:image/jpg;base64," + processed.base64Img
+          new Promise(resolve => {
+            const src = "data:image/jpg;base64," + processed.base64Img
 
-          $("#processed-image-preview").attr("src", src)
-          $("#processed-image-preview").hide().fadeIn(3000)
-          $("#processed-image").attr("src", src)
-          $("#upload-button").hide()
-          $("#download-button").hide().fadeIn(500)
+            $("#processed-image-preview").attr("src", src)
+            $("#processed-image-preview").hide().fadeIn(3000)
+            $("#processed-image").attr("src", src)
+            $("#upload-button").hide()
+            $("#download-button").hide().fadeIn(500)
 
-          finishProcessingView()
+            resolve(finishProcessingView())
+          }).then(resolved => {
+            showDetectedCount(processed.detectedCount, 3000)
+          })
         })
       }
     }).catch(error => {
