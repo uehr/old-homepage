@@ -13,8 +13,8 @@ $(function () {
   $("#processing-view").hide()
   $("#processed-image-preview").hide()
 
-  // const personMosaicURL = "https://wever.uehr.co/personMosaic"
-  const personMosaicURL = "http://localhost/personMosaic"
+  const personMosaicURL = "https://wever.uehr.co/personMosaic"
+  // const personMosaicURL = "http://localhost/personMosaic"
   var selectedFileName = ""
 
   const imageToBase64 = (imgTagId, mimeType) => {
