@@ -82,20 +82,32 @@
             <h1 id="processing-view">Processing...</h1>
 
             <div id="upload-ui">
-                <img id="back-button" title="戻る" class="btn upload-ui-button" src="img/back.png"></img>
-                <img id="upload-button" title="モザイク加工" class="btn upload-ui-button" src="img/effect.png"></img>
-                <img id="download-button" title="ダウンロード" class="btn upload-ui-button" src="img/download.png"></img>
+                <div id="back-button" title="戻る" class="btn upload-ui-button">
+                    <img class="upload-ui-button-img" src="img/back.png">
+                    <h1 class="upload-ui-button-text">戻る</h1>
+                </div>
+
+                <div id="upload-button" title="モザイク加工" class="btn upload-ui-button">
+                    <img class="upload-ui-button-img" src="img/effect.png">
+                    <h1 class="upload-ui-button-text">モザイク</h1>
+                </div>
+
+                <div id="download-button" title="ダウンロード" class="btn upload-ui-button">
+                    <img class="upload-ui-button-img" src="img/download.png">
+                    <h1 class="upload-ui-button-text">ダウンロード</h1>
+                </div>
+
+                <img id="upload-image">
+                <img id="processed-image">
             </div>
         </div>
-
-        <img id="upload-image">
-        <img id="processed-image">
     </div>
 
     <footer class="back1">
         <div id="copyright">
             <p class="font1">This site is open source. <a href="https://github.com/uehr/uehr.github.io/tree/background"
-                    target="_blank">Github</a>.</p>
+                    target="_blank">Github</a>.
+            </p>
             <p class="font1">Copyright(c) 2017, Yudai Uehara (<a class="theme-color" href="https://twitter.com/uehr37"
                     target="_blank">@uehr37</a>)<br>All
                 Rights Reserved.</p>

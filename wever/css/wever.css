@@ -20,7 +20,18 @@
 .upload-ui-button {
   display: inline-block;
   opacity: 0.8;
-  width: 3vw;
+}
+
+.upload-ui-button-text {
+  margin-top: auto;
+  margin-bottom: auto;
+  display: inline-block;
+  font-size: 4.5vw;
+  margin-left: 1vw;
+}
+
+.upload-ui-button-img {
+  width: 7vw;
   vertical-align: bottom;
 }
 
@@ -110,7 +121,7 @@
   text-align: center;
   background-color: var(--theme-color);
   border-radius: 10px;
-  padding: 2%;
+  padding: 1%;
   margin:auto;
 }
 
