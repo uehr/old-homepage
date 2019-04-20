@@ -134,11 +134,17 @@ $(function () {
   })
 
   $("#upload-button").click(() => {
-    startProcessingView()
-
-    const base64Img = imageToBase64("upload-image", "image/jpg")
-
-    personMosaic(base64Img).then(res => {
+    new Promise(resolve => {
+      resolve(startProcessingView())
+    }).then(resolved => {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve(imageToBase64("upload-image", "image/jpg"))
+        }, 100)
+      })
+    }).then(base64Img => {
+      return personMosaic(base64Img)
+    }).then(res => {
       if (res.status !== 200) {
         alert("処理に失敗しました")
         finishProcessingView()
@@ -148,7 +154,6 @@ $(function () {
 
           $("#processed-image-preview").attr("src", src)
           $("#processed-image-preview").hide().fadeIn(3000)
-          // $("#processed-image-preview").show()
           $("#processed-image").attr("src", src)
           $("#upload-button").hide()
           $("#download-button").hide().fadeIn(500)
