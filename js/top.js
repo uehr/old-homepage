@@ -4,6 +4,9 @@ $(function () {
   $('.headline-wrap').hide().fadeIn(500);
   $('.post').hide().fadeIn(500);
   $('.product-wrap').hide().fadeIn(500);
+  $("#to-top").click(() => {
+    $('html,body').animate({ scrollTop: 0 }, 500, 'swing');
+  })
 
   var bottom_margin = '6vh';
 
