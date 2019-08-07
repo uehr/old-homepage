@@ -43,8 +43,21 @@ body {
   color: var(--font-color2)
 }
 
-ul {
-  list-style-image: var(--list-mark);
+ul li {
+  list-style: none;
+  position: relative;
+  margin-left: 3%;
+}
+
+ul li::after {
+  display: block;
+  content: '';
+  position: absolute;
+  top: .65em;
+  left: -1em;
+  width: 1.5vw;
+  height: 5px;
+  background-color: var(--theme-color);
 }
 
 * {
@@ -77,5 +90,10 @@ a:hover {
 @media screen and (max-width : 500px) {
   a {
     opacity:1; 
+  }
+
+  ul li::after {
+    width: 1.5vw;
+    height: 3px;
   }
 }

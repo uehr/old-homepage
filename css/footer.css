@@ -1,6 +1,6 @@
 #copyright {
   text-align:center;
-  font-size:100%;
+  font-size: 2vw;
   padding-top:10px;
   padding-bottom:10px;
 }
@@ -8,6 +8,6 @@
 
 @media screen and (max-width : 500px) {
   #copyright {
-    font-size: 50%;
+    font-size: 3vw;
   }
 }
